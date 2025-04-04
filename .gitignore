@@ -80,3 +80,6 @@ fabric.properties
 ### dotenv template
 .env
 
+week3/dbconfig.php
+week3/PDO-harjoitus/logs
+week3/PDO-harjoitus/uploads
