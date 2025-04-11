@@ -17,7 +17,6 @@
                 <textarea name="description" id="description" rows="5"></textarea>
             </label>
         </div>
-        <input type="hidden" name="user_id" value="1">
         <button type="submit" value="Upload Image" name="submit" >Upload</button>
     </form>
 

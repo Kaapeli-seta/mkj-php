@@ -5,14 +5,21 @@ require_once __DIR__ . "/../config/config.php";
 require_once __DIR__ . '/../db/dbConnect.php';
 
 
-if ( !empty($_POST['media_id']) && !empty($_POST['user_id']) ) {
+if (!isset($_SESSION['user'])) {
+    header('Location: '. $SITE_URL . '/user.php');
+    exit;
+}
 
-    $userId = $_POST['user_id'];
+if ( !empty($_POST['media_id']) ) {
+
+    $userId = $_SESSION['user']['user_id'];
     $media_id = $_POST['media_id'];
     $title = $_POST['title'];
     $description = $_POST['description'];
-
-    $sql = "UPDATE MediaItems SET title = :title, description = :description WHERE media_id = :media_id AND user_id = :user_id";
+    $sql = "UPDATE MediaItems SET title = :title, description = :description WHERE media_id = :media_id";
+    if ($_SESSION['user']['user_level_id'] === 1) {
+        $sql .= " AND user_id = :user_id";
+    }
     $data = [
         'title' => $title,
         'description' => $description,

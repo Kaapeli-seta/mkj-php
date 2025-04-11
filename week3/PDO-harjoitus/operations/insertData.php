@@ -3,16 +3,22 @@ global $DBH;
 global $SITE_URL;
 require_once __DIR__ . "/../config/config.php";
 require_once __DIR__ . '/../db/dbConnect.php';
+session_start();
+
+if (!isset($_SESSION['user'])) {
+    header('Location: '. $SITE_URL . '/user.php');
+    exit;
+}
 
 
-if (!empty($_POST['title']) && !empty($_POST['user_id']) && $_FILES["file"]["error"] === UPLOAD_ERR_OK ) {
+if (!empty($_POST['title']) && $_FILES["file"]["error"] === UPLOAD_ERR_OK ) {
 
     $filename    = $_FILES['file']['name'];
     $filesize    = $_FILES['file']['size'];
     $filetype    = $_FILES['file']['type'];
     $tmp_name    = $_FILES['file']['tmp_name'];
     $destination = __DIR__ . '/../uploads/' . $filename;
-    $userId = $_POST['user_id'];
+    $userId = $_SESSION['user']['user_id'];
 
     $allowed_types = array ('image/jpeg', 'image/png', 'image/gif',
         'image/webp', 'video/mp4', 'video/webm', 'video/ogg', 'video/mov');
