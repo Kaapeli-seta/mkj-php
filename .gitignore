@@ -83,3 +83,7 @@ fabric.properties
 week3/dbconfig.php
 week3/PDO-harjoitus/logs
 week3/PDO-harjoitus/uploads
+
+week4/dbconfig.php
+week4/OOP-harjoitus/logs
+week4/OOP-harjoitus/uploads
